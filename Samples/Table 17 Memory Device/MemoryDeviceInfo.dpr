@@ -25,6 +25,7 @@ procedure GetMemoryDeviceInfo;
           WriteLn(Format('Data Width     %d bits', [LMemoryDevice.RAWMemoryDeviceInfo.DataWidth]));
           WriteLn(Format('Size           %d Mbytes', [LMemoryDevice.GetSize]));
           WriteLn(Format('Form Factor    %s', [LMemoryDevice.GetFormFactor]));
+          WriteLn(Format('Device Set     %s', [LMemoryDevice.GetDeviceSetStr]));
           WriteLn(Format('Device Locator %s', [LMemoryDevice.GetDeviceLocatorStr]));
           WriteLn(Format('Bank Locator   %s', [LMemoryDevice.GetBankLocatorStr]));
           WriteLn(Format('Memory Type    %s', [LMemoryDevice.GetMemoryTypeStr]));
