@@ -63,7 +63,7 @@ procedure GetProcessorInfo;
           WriteLn('Familiy            ' + LProcessorInfo.ProcessorFamilyStr);
           WriteLn('Version            ' + LProcessorInfo.ProcessorVersionStr);
           WriteLn(Format('Processor ID       %x', [LProcessorInfo.RAWProcessorInformation^.ProcessorID]));
-          WriteLn(Format('Voltaje            %n', [LProcessorInfo.GetProcessorVoltaje]));
+          WriteLn(Format('Voltage            %n' + ' V', [LProcessorInfo.GetProcessorVoltaje]));
           WriteLn(Format('External Clock     %d  Mhz', [LProcessorInfo.RAWProcessorInformation^.ExternalClock]));
           WriteLn(Format('Maximum processor speed %d  Mhz', [LProcessorInfo.RAWProcessorInformation^.MaxSpeed]));
           WriteLn(Format('Current processor speed %d  Mhz', [LProcessorInfo.RAWProcessorInformation^.CurrentSpeed]));
