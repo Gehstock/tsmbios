@@ -5641,7 +5641,9 @@ begin
         Result := 'Intel® Celeron® M processor';
       21 :
         Result := 'Intel® Pentium® 4 HT processor';
-      22 .. 23 :
+      22 :
+        Result := 'Intel® Processor';
+      23 :
         Result := 'Available for assignment';
       24 :
         Result := 'AMD Duron Processor Family';
@@ -5683,8 +5685,14 @@ begin
         Result := 'Intel® Core Solo mobile processor';
       43 :
         Result := 'Intel® Atom processor';
-      44 .. 47 :
-        Result := 'Available for assignment';
+      44 :
+        Result := 'Intel® Core™ M processor';
+      45 :
+        Result := 'Intel(R) Core(TM) m3 processor';
+      46 :
+        Result := 'Intel(R) Core(TM) m5 processor';
+      47 :
+        Result := 'Intel(R) Core(TM) m7 processor';
       48 :
         Result := 'Alpha Family';
       49 :
@@ -5716,7 +5724,7 @@ begin
       62 :
         Result := 'AMD Opteron 4200 Series Processor';
       63 :
-        Result := 'Available for assignment';
+        Result := 'AMD FX™ Series Processor';
       64 :
         Result := 'MIPS Family';
       65 :
@@ -5737,8 +5745,18 @@ begin
         Result := 'AMD A-Series Processor';
       73 :
         Result := 'AMD G-Series Processor';
-      74 .. 79 :
-        Result := 'Available for assignment';
+      74 :
+        Result := 'AMD Z-Series Processor';
+      75 :
+        Result := 'AMD R-Series Processor';
+      76 :
+        Result := 'AMD Opteron™ 4300 Series Processor';
+      77 :
+        Result := 'AMD Opteron™ 6300 Series Processor';
+      78 :
+        Result := 'AMD Opteron™ 3300 Series Processor';
+      79 :
+        Result := 'AMD FirePro™ Series Processor';
       80 :
         Result := 'SPARC Family';
       81 :
@@ -5771,7 +5789,19 @@ begin
         Result := '68020';
       101 :
         Result := '68030';
-      102 .. 111 :
+      102 :
+        Result := 'AMD Athlon(TM) X4 Quad-Core Processor Family';
+      103 :
+        Result := 'AMD Opteron(TM) X1000 Series Processor';
+      104 :
+        Result := 'AMD Opteron(TM) X2000 Series APU';
+      105 :
+        Result := 'AMD Opteron(TM) A-Series Processor';
+      106 :
+        Result := 'AMD Opteron(TM) X3000 Series APU';
+      107 :
+        Result := 'AMD Zen Processor Family';
+      108 .. 111 :
         Result := 'Available for assignment';
       112 :
         Result := 'Hobbit Family';
@@ -5868,7 +5898,7 @@ begin
       176 :
         Result := 'Pentium® III Xeon processor';
       177 :
-        Result := 'Pentium® III Processor with Intel';
+        Result := 'Pentium® III Processor with Intel® SpeedStep™ Technology';
       178 :
         Result := 'Pentium® 4 Processor';
       179 :
@@ -5890,7 +5920,7 @@ begin
       187 :
         Result := 'Intel® Pentium® D processor';
       188 :
-        Result := 'Intel® Pentium® Processor Extreme';
+        Result := 'Intel® Pentium® Processor Extreme Edition';
       189 :
         Result := 'Intel® Core Solo Processor';
       190 :
@@ -5927,7 +5957,9 @@ begin
         Result := 'Intel® Core i5 processor';
       206 :
         Result := 'Intel® Core i3 processor';
-      207 .. 209 :
+      207 :
+        Result := 'Intel® Core i9 processor';
+      208 .. 209 :
         Result := 'Available for assignment';
       210 :
         Result := 'VIA C7-M Processor Family';
@@ -5959,8 +5991,12 @@ begin
         Result := 'Multi-Core Intel® Xeon® processor 7xxx Series';
       224 :
         Result := 'Multi-Core Intel® Xeon® processor 3400 Series';
-      225 .. 229 :
+      225 .. 227 :
         Result := 'Available for assignment';
+      228 :
+        Result := 'AMD Opteron™ 3000 Series Processor';
+      229 :
+        Result := 'AMD Sempron™ II Processor';
       230 :
         Result := 'Embedded AMD Opteron Quad-Core Processor Family';
       231 :
@@ -5990,7 +6026,7 @@ begin
       252 .. 253 :
         Result := 'Available for assignment';
       254 :
-        Result := 'Indicator to obtain the processor family from the Processor';
+        Result := 'Indicator to obtain the processor family from the Processor Family 2 field';
       255 :
         Result := 'Reserved';
       else
@@ -5998,7 +6034,15 @@ begin
     end
   else
     case RAWProcessorInformation^.ProcessorFamily2 of
-      256 .. 259, 262 .. 279, 282 .. 299, 303 .. 319, 321 .. 349, 351 .. 499, 501 .. 511 :
+      256 :
+        Result := 'ARMv7';
+      257 :
+        Result := 'ARMv8';
+      258 :
+        Result := 'ARMv9';
+      259 :
+        Result := 'Reserved for future use by ARM';
+      262 .. 279, 282 .. 299, 303 .. 319, 321 .. 349, 351 .. 499, 501 .. 511 :
         Result := 'These values are available for assignment';
       260 :
         Result := 'SH-3';
@@ -6020,7 +6064,47 @@ begin
         Result := 'DSP';
       500 :
         Result := 'Video Processor';
-      512 .. 65533 :
+      512 :
+        Result := 'RISC-V RV32';
+      513 :
+        Result := 'RISC-V RV64';
+      514 :
+        Result := 'RISC-V RV128';
+      600 :
+        Result := 'LoongArch';
+      601 :
+        Result := 'Loongson™ 1 Processor Family';
+      602 :
+        Result := 'Loongson™ 2 Processor Family';
+      603 :
+        Result := 'Loongson™ 3 Processor Family';
+      604 :
+        Result := 'Loongson™ 2K Processor Family';
+      605 :
+        Result := 'Loongson™ 3A Processor Family';
+      606 :
+        Result := 'Loongson™ 3B Processor Family';
+      607 :
+        Result := 'Loongson™ 3C Processor Family';
+      608 :
+        Result := 'Loongson™ 3D Processor Family';
+      609 :
+        Result := 'Loongson™ 3E Processor Family';
+      610 :
+        Result := 'Dual-Core Loongson™ 2K Processor 2xxx Series';
+      620 :
+        Result := 'Quad-Core Loongson™ 3A Processor 5xxx Series';
+      621 :
+        Result := 'Multi-Core Loongson™ 3A Processor 5xxx Series';
+      622 :
+        Result := 'Quad-Core Loongson™ 3B Processor 5xxx Series';
+      623 :
+        Result := 'Multi-Core Loongson™ 3B Processor 5xxx Series';
+      624 :
+        Result := 'Multi-Core Loongson™ 3C Processor 5xxx Series';
+      625 :
+        Result := 'Multi-Core Loongson™ 3D Processor 5xxx Series';
+      768 .. 65533 :
         Result := 'Available for assignment';
       65534 .. 65535 :
         Result := 'Reserved'
@@ -6140,7 +6224,83 @@ begin
     $29 :
       Result := 'Socket FM1';
     $2A :
-      Result := 'Socket FM2'
+      Result := 'Socket FM2';
+    $2B :
+      Result := 'Socket LGA2011-3';
+    $2C :
+      Result := 'Socket LGA1356-3';
+    $2D :
+      Result := 'Socket LGA1150';
+    $2E :
+      Result := 'Socket BGA1168';
+    $2F :
+      Result := 'Socket BGA1234';
+    $30 :
+      Result := 'Socket BGA1364';
+    $31 :
+      Result := 'Socket AM4';
+    $32 :
+      Result := 'Socket LGA1151';
+    $33 :
+      Result := 'Socket BGA1356';
+    $34 :
+      Result := 'Socket BGA1440';
+    $35 :
+      Result := 'Socket BGA1515';
+    $36 :
+      Result := 'Socket LGA3647-1';
+    $37 :
+      Result := 'Socket SP3';
+    $38 :
+      Result := 'Socket SP3r2';
+    $39 :
+      Result := 'Socket LGA2066';
+    $3A :
+      Result := 'Socket BGA1392';
+    $3B :
+      Result := 'Socket BGA1510';
+    $3C :
+      Result := 'Socket BGA1528';
+    $3D :
+      Result := 'Socket LGA4189';
+    $3E :
+      Result := 'Socket LGA1200';
+    $3F :
+      Result := 'Socket LGA4677';
+    $40 :
+      Result := 'Socket LGA1700';
+    $41 :
+      Result := 'Socket BGA1744';
+    $42 :
+      Result := 'Socket BGA1781';
+    $43 :
+      Result := 'Socket BGA1211';
+    $44 :
+      Result := 'Socket BGA2422';
+    $45 :
+      Result := 'Socket LGA1211';
+    $46 :
+      Result := 'Socket LGA2422';
+    $47 :
+      Result := 'Socket LGA5773';
+    $48 :
+      Result := 'Socket BGA5773';
+    $49 :
+      Result := 'Socket AM5';
+    $4A :
+      Result := 'Socket SP5';
+    $4B :
+      Result := 'Socket SP6';
+    $4C :
+      Result := 'Socket BGA883';
+    $4D :
+      Result := 'Socket BGA1190';
+    $4E :
+      Result := 'Socket BGA4129';
+    $4F :
+      Result := 'Socket LGA4710';
+    $50 :
+      Result := 'Socket LGA7529';
     else
       Result := 'Unknown';
   end;
