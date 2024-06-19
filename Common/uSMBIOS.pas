@@ -2897,6 +2897,12 @@ type
       /// Get the description of the DeviceLocator field.
       /// </summary>
       { $ENDREGION }
+      function GetDeviceSetStr: AnsiString;
+      { $REGION 'Documentation' }
+      /// <summary>
+      /// Get the description of the Device Set field.
+      /// </summary>
+      { $ENDREGION }
       function GetDeviceLocatorStr: AnsiString;
       { $REGION 'Documentation' }
       /// <summary>
@@ -6992,6 +6998,11 @@ begin
   Result := GetSMBiosString(@RAWMemoryDeviceInfo^, RAWMemoryDeviceInfo^.Header.Length, RAWMemoryDeviceInfo^.BankLocator);
 end;
 
+function TMemoryDeviceInformation.GetDeviceSetStr: AnsiString;
+begin
+  Result := GetSMBiosString(@RAWMemoryDeviceInfo^, RAWMemoryDeviceInfo^.Header.Length, RAWMemoryDeviceInfo^.DeviceSet);
+end;
+
 function TMemoryDeviceInformation.GetDeviceLocatorStr: AnsiString;
 begin
   Result := GetSMBiosString(@RAWMemoryDeviceInfo^, RAWMemoryDeviceInfo^.Header.Length, RAWMemoryDeviceInfo^.DeviceLocator);
@@ -7029,7 +7040,9 @@ begin
     $0E :
       Result := 'SRIMM';
     $0F :
-      Result := 'FB-DIMM'
+      Result := 'FB-DIMM';
+    $10 :
+      Result := 'Die';
     else
       Result := 'Unknown';
   end;
@@ -7083,7 +7096,29 @@ begin
     $18 :
       Result := 'DDR3';
     $19 :
-      Result := 'FBD2'
+      Result := 'FBD2';
+    $1A :
+      Result := 'DDR4';
+    $1B :
+      Result := 'LPDDR';
+    $1C :
+      Result := 'LPDDR2';
+    $1D :
+      Result := 'LPDDR3';
+    $1E :
+      Result := 'LPDDR4';
+    $1F :
+      Result := 'Logical non-volatile device';
+    $20 :
+      Result := 'HBM (High Bandwidth Memory)';
+    $21 :
+      Result := 'HBM2 (High Bandwidth Memory Generation 2)';
+    $22 :
+      Result := 'DDR5';
+    $23 :
+      Result := 'LPDDR5';
+    $24 :
+      Result := 'HBM3 (High Bandwidth Memory Generation 3)';
     else
       Result := 'Unknown';
   end;
