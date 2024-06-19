@@ -50,6 +50,9 @@
 * Additional Information (Type 40) - Not Implemented
 * Onboard Devices Extended Information (Type 41) - Not Implemented
 * Management Controller Host Interface (Type 42) - Not Implemented
+* TPM Device (Type 43) - Not Implemented
+* Processor Additional Information (Type 44) - Not Implemented
+* Firmware Inventory Information (Type 45) - Not Implemented
 
 ## Sample source code
 This code demonstrates how to retrieve information related to the memory devices installed on the system.
