@@ -6793,7 +6793,11 @@ begin
     $03 :
       Result := 'Short Length';
     $04 :
-      Result := 'Long Length'
+      Result := 'Long Length';
+    $05 :
+      Result := '2.5" drive form factor';
+    $06 :
+      Result := '3.5" drive form factor';
     else
       Result := 'Unknown';
   end;
@@ -6885,7 +6889,44 @@ begin
     $B5 :
       Result := 'PCI Express Gen 3 x8';
     $B6 :
-      Result := 'PCI Express Gen 3 x16'
+      Result := 'PCI Express Gen 3 x16';
+    $B8 :
+      Result := 'PCI Express Gen 4';// (see note below)';
+    $B9 :
+      Result := 'PCI Express Gen 4 x1';
+    $BA :
+      Result := 'PCI Express Gen 4 x2';
+    $BB :
+      Result := 'PCI Express Gen 4 x4';
+    $BC :
+      Result := 'PCI Express Gen 4 x8';
+    $BD :
+      Result := 'PCI Express Gen 4 x16';
+    $BE :
+      Result := 'PCI Express Gen 5;// (see note below)';
+    $BF :
+      Result := 'PCI Express Gen 5 x1';
+    $C0 :
+      Result := 'PCI Express Gen 5 x2';
+    $C1 :
+      Result := 'PCI Express Gen 5 x4';
+    $C2 :
+      Result := 'PCI Express Gen 5 x8';
+    $C3 :
+      Result := 'PCI Express Gen 5 x16';
+    $C4 :
+      Result := 'PCI Express Gen 6 and Beyond';
+      // (see Slot Information and Slot Physical Width fields for more details)
+    $C5 :
+      Result := 'Enterprise and Datacenter 1U E1 Form Factor Slot (EDSFF E1.S, E1.L)';
+      // E1 slot length is reported in Slot Length field (see section 7.10.4).
+      // E1 slot pitch is reported in Slot Pitch field (see section 7.10.12).
+      // See specifications SFF-TA-1006 and SFF-TA-1007 for more details on values for slot length and pitch.
+    $C6 :
+      Result := 'Enterprise and Datacenter 3" E3 Form Factor Slot (EDSFF E3.S, E3.L)';
+      // E3 slot length is reported in Slot Length field (see section 7.10.4).
+      // E3 slot pitch is reported in Slot Pitch field (see section 7.10.12).
+      // See specification SFF-TA-1008 for details on values for slot length and pitch.
     else
       Result := 'Unknown';
   end;
