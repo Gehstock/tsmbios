@@ -42,7 +42,11 @@ procedure GetBIOSInfo;
         WriteLn(Format('Embedded Controller Firmware Minor Releasee %d',
           [LBIOS.RAWBiosInformation.EmbeddedControllerFirmwareMinorRelease]));
       WriteLn;
-
+      if SMBios.SmbiosVersion >= '3.1'
+      then
+      begin
+        WriteLn('Extended BIOS ROM Size    ' + inttostr(LBIOS.RAWBiosInformation.ExtendedBIOSROMSize));
+      end;
       if SMBios.HasOEMStringsInfo
       then
       begin
