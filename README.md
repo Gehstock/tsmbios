@@ -31,21 +31,27 @@
 * System Event Log (Type 15) - Not Implemented
 * [Physical Memory Array](https://github.com/RRUZ/tsmbios/blob/wiki/PhysicalMemoryArray.md) (Type 16)
 * [Memory Device](https://github.com/RRUZ/tsmbios/blob/wiki/MemoryDevice.md) (Type 17)
+* 32-Bit Memory Error Information (Type 18) - Not Implemented
 * [Memory Array Mapped Address](https://github.com/RRUZ/tsmbios/blob/wiki/MemoryArrayMappedAddress.md) (Type 19)
 * [Memory Device Mapped Address](https://github.com/RRUZ/tsmbios/blob/wiki/MemoryDeviceMappedAddress.md) (Type 20)
 * [Built-in Pointing Device](https://github.com/RRUZ/tsmbios/blob/wiki/BuiltInPointingDevice.md) (Type 21)
 * [Portable Battery](https://github.com/RRUZ/tsmbios/blob/wiki/PortableBattery.md) (Type 22)
 * System Reset (Type 23) - Not Implemented
+* Hardware Security (Type 24) - Not Implemented
+* System Power Controls (Type 25) - Not Implemented
 * [Voltage Probe](https://github.com/RRUZ/tsmbios/blob/wiki/VoltageProbe.md) (Type 26)
 * [Cooling Device](https://github.com/RRUZ/tsmbios/blob/wiki/CoolingDevice.md) (Type 27)
 * [Temperature Probe](https://github.com/RRUZ/tsmbios/blob/wiki/TemperatureProbe.md) (Type 28)
 * [Electrical Current Probe](https://github.com/RRUZ/tsmbios/blob/wiki/ElectricalCurrentProbe.md) (Type 29)
 * Out-of-Band Remote Access (Type 30) - Not Implemented
+* Boot Integrity Services (BIS) Entry Point (Type 31) - Not Implemented
+* 3 System Boot Information (Type 32) - Not Implemented
 * 64-Bit Memory Error Information (Type 33) - Not Implemented
 * Management Device (Type 34) - Not Implemented
 * Management Device Component (Type 35) - Not Implemented
 * Management Device Threshold Data (Type 36) - Not Implemented
 * Memory Channel (Type 37) - Not Implemented
+* IPMI Device Information (Type 38) - Not Implemented
 * System Power Supply (Type 39) - Not Implemented
 * Additional Information (Type 40) - Not Implemented
 * Onboard Devices Extended Information (Type 41) - Not Implemented
@@ -53,6 +59,7 @@
 * TPM Device (Type 43) - Not Implemented
 * Processor Additional Information (Type 44) - Not Implemented
 * Firmware Inventory Information (Type 45) - Not Implemented
+* String Property (Type 46) - Not Implemented
 
 ## Sample source code
 This code demonstrates how to retrieve information related to the memory devices installed on the system.
