@@ -6903,7 +6903,7 @@ begin
     $BD :
       Result := 'PCI Express Gen 4 x16';
     $BE :
-      Result := 'PCI Express Gen 5;// (see note below)';
+      Result := 'PCI Express Gen 5';// (see note below)';
     $BF :
       Result := 'PCI Express Gen 5 x1';
     $C0 :
