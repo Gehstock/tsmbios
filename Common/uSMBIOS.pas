@@ -322,6 +322,23 @@ type
     /// </remarks>
     { $ENDREGION }
     EmbeddedControllerFirmwareMinorRelease: Byte;
+    { $REGION 'Documentation' }
+    /// <summary>
+    /// Extended size of the physical device(s) containing the BIOS, rounded up if needed.
+    ///         Bits 15:14 Unit
+    ///                     00b - mebibytes
+    ///                     01b - gibibytes
+    ///                     10b - reserved
+    ///                     11b - reserved
+    ///         Bits 13:0 Size
+    /// Examples: a 16 MB device would be represented as 0010h.
+    /// A 48 GiB device set would be represented as 0100_0000_0011_0000b or 4030h.
+    /// </summary>
+    /// <remarks>
+    /// 3.1+
+    /// </remarks>
+    { $ENDREGION }
+    ExtendedBIOSROMSize: Word;
   end;
 
   TBiosInformation = class
@@ -5551,7 +5568,21 @@ begin
     $1C :
       Result := 'Blade';
     $1D :
-      Result := 'Blade Enclosure'
+      Result := 'Blade Enclosure';
+    $1E :
+      Result := 'Tablet';
+    $1F :
+      Result := 'Convertible';
+    $20 :
+      Result := 'Detachable';
+    $21 :
+      Result := 'IoT Gateway';
+    $22 :
+      Result := 'Embedded PC';
+    $23 :
+      Result := 'Mini PC';
+    $24 :
+      Result := 'Stick PC';
     else
       Result := 'Unknown';
   end;
