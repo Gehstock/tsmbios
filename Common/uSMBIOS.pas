@@ -1517,7 +1517,7 @@ type
     /// 2.0+
     /// </remarks>
     { $ENDREGION }
-    Voltaje: Byte;
+    Voltage: Byte;
     { $REGION 'Documentation' }
     /// <summary>
     /// External Clock Frequency, in MHz. If the value is unknown, the field
@@ -1759,11 +1759,95 @@ type
     { $ENDREGION }
     ProcessorCharacteristics: Word;
     { $REGION 'Documentation' }
+    /// <summary>
+    ///
+    /// </summary>
     /// <remarks>
     /// 2.6+
     /// </remarks>
     { $ENDREGION }
     ProcessorFamily2: Word;
+    { $REGION 'Documentation' }
+    /// <summary>
+    /// Number of Cores per processor socket. Supports
+    /// core counts >255. If this field is present, it holds
+    /// the core count for the processor socket. Core
+    /// Count will also hold the core count, except for
+    /// core counts that are 256 or greater. In that case,
+    /// Core Count shall be set to FFh and Core Count 2
+    /// will hold the count.
+    ///       Legal values:
+    ///             0000h = unknown
+    ///             0001h-00FFh = core counts 1 to 255.
+    ///             Matches Core Count value.
+    ///             0100h-FFFEh = Core counts 256 to 65534,
+    ///             respectively.
+    ///             FFFFh = reserved.
+    /// </summary>
+    /// <remarks>
+    /// 3.0+
+    /// </remarks>
+    { $ENDREGION }
+    CoreCount2: Word;
+    { $REGION 'Documentation' }
+    /// <summary>
+    /// Number of enabled cores per processor socket.
+    /// Supports core enabled counts >255. If this field is
+    /// present, it holds the core enabled count for the
+    /// processor socket. Core Enabled will also hold the
+    /// core enabled count, except for core counts that
+    /// are 256 or greater. In that case, Core Enabled
+    /// shall be set to FFh and Core Enabled 2 will hold the count.
+    ///       Legal values:
+    ///             0000h = unknown
+    ///             0001h-00FFh = core enabled counts 1 to
+    ///             255. Matches Core Enabled value.
+    ///             0100h-FFFEh = core enabled counts 256 to
+    ///             65534, respectively.
+    ///             FFFFh = reserved.
+    /// </summary>
+    /// <remarks>
+    /// 3.0+
+    /// </remarks>
+    { $ENDREGION }
+    CoreEnabled2: Word;
+    { $REGION 'Documentation' }
+    /// <summary>
+    /// Number of threads per processor socket.
+    /// Supports thread counts >255. If this field is
+    /// present, it holds the thread count for the
+    /// processor socket. Thread Count will also hold the
+    /// thread count, except for thread counts that are
+    /// 256 or greater. In that case, Thread Count shall
+    /// be set to FFh and Thread Count 2 will hold the
+    /// count.
+    ///     Legal values:
+    ///           0000h = unknown
+    ///           0001h-00FFh = thread counts 1 to 255.
+    ///           Matches Thread Count value.
+    ///           0100h-FFFEh = thread counts 256 to
+    ///           65534, respectively.
+    ///           FFFFh = reserved.
+    /// </summary>
+    /// <remarks>
+    /// 3.0+
+    /// </remarks>
+    { $ENDREGION }
+    ThreadCount2: Word;
+    { $REGION 'Documentation' }
+    /// <summary>
+    /// Number of enabled threads per processor socket.
+    ///     Legal values:
+    ///           0000h = unknown
+    ///           0001h-FFFEh = thread enabled counts 1 to
+    ///           65534, respectively
+    ///           FFFFh = reserved
+    /// </summary>
+    /// <remarks>
+    /// 3.6+
+    /// </remarks>
+    { $ENDREGION }
+    ThreadEnabled: Word;
   end;
 
   TProcessorInformation = class
@@ -1807,7 +1891,7 @@ type
       /// Get the  Voltaje of the Processor
       /// </summary>
       { $ENDREGION }
-      function GetProcessorVoltaje: Double;
+      function GetProcessorVoltage: Double;
       { $REGION 'Documentation' }
       /// <summary>
       /// Get the description  of the ProcessorUpgrade field
@@ -5600,16 +5684,16 @@ begin
   Result := GetSMBiosString(@RAWProcessorInformation^, RAWProcessorInformation^.Header.Length, RAWProcessorInformation^.AssetTag);
 end;
 
-function TProcessorInformation.GetProcessorVoltaje: Double;
+function TProcessorInformation.GetProcessorVoltage: Double;
 var
-  _Voltaje: Byte;
+  _Voltage: Byte;
 begin
   Result := 0;
-  _Voltaje := RAWProcessorInformation^.Voltaje;
-  if GetBit(_Voltaje, 7) then
+  _Voltage := RAWProcessorInformation^.Voltage;
+  if GetBit(_Voltage, 7) then
   begin
-    _Voltaje := EnableBit(_Voltaje, 7, false);
-    Result := (_Voltaje * 1.0) / 10.0;
+    _Voltage := EnableBit(_Voltage, 7, false);
+    Result := (_Voltage * 1.0) / 10.0;
   end
   else
   begin
@@ -5618,11 +5702,11 @@ begin
       Bit 1  3.3V
       Bit 2  2.9V
     }
-    if GetBit(_Voltaje, 0) then
+    if GetBit(_Voltage, 0) then
       Result := 5
-    else if GetBit(_Voltaje, 1) then
+    else if GetBit(_Voltage, 1) then
       Result := 3.3
-    else if GetBit(_Voltaje, 2) then
+    else if GetBit(_Voltage, 2) then
       Result := 2.9;
   end;
 end;
