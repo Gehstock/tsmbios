@@ -87,7 +87,20 @@ procedure GetProcessorInfo;
             end;
           end;
           WriteLn;
-
+          if SMBios.SmbiosVersion >= '3.0'
+          then
+          begin
+ //             WriteLn(Format('Core Count2         %d', [LProcessorInfo.RAWProcessorInformation^.CoreCount2]));
+ //             WriteLn(Format('Cores Enabled2      %d', [LProcessorInfo.RAWProcessorInformation^.CoreEnabled2]));
+ //             WriteLn(Format('Threads Count2      %d', [LProcessorInfo.RAWProcessorInformation^.ThreadCount2]));
+          end;
+          WriteLn;
+          if SMBios.SmbiosVersion >= '3.6'
+          then
+          begin
+ //             WriteLn(Format('Threads Enabled      %d', [LProcessorInfo.RAWProcessorInformation^.ThreadEnabled]));
+          end;
+          WriteLn;
           if (LProcessorInfo.RAWProcessorInformation^.L1CacheHandle > 0) and (LProcessorInfo.L2Chache <> nil)
           then
           begin
