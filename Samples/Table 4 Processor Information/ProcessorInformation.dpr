@@ -63,7 +63,7 @@ procedure GetProcessorInfo;
           WriteLn('Familiy            ' + LProcessorInfo.ProcessorFamilyStr);
           WriteLn('Version            ' + LProcessorInfo.ProcessorVersionStr);
           WriteLn(Format('Processor ID       %x', [LProcessorInfo.RAWProcessorInformation^.ProcessorID]));
-          WriteLn(Format('Voltage            %n' + ' V', [LProcessorInfo.GetProcessorVoltaje]));
+          WriteLn(Format('Voltage            %n' + ' V', [LProcessorInfo.GetProcessorVoltage]));
           WriteLn(Format('External Clock     %d  Mhz', [LProcessorInfo.RAWProcessorInformation^.ExternalClock]));
           WriteLn(Format('Maximum processor speed %d  Mhz', [LProcessorInfo.RAWProcessorInformation^.MaxSpeed]));
           WriteLn(Format('Current processor speed %d  Mhz', [LProcessorInfo.RAWProcessorInformation^.CurrentSpeed]));
@@ -82,8 +82,7 @@ procedure GetProcessorInfo;
               WriteLn(Format('Core Count         %d', [LProcessorInfo.RAWProcessorInformation^.CoreCount]));
               WriteLn(Format('Cores Enabled      %d', [LProcessorInfo.RAWProcessorInformation^.CoreEnabled]));
               WriteLn(Format('Threads Count      %d', [LProcessorInfo.RAWProcessorInformation^.ThreadCount]));
-              WriteLn(Format('Processor Characteristics %.4x',
-                [LProcessorInfo.RAWProcessorInformation^.ProcessorCharacteristics]));
+              WriteLn(Format('Processor Characteristics %.4x',[LProcessorInfo.RAWProcessorInformation^.ProcessorCharacteristics]));
             end;
           end;
           WriteLn;
