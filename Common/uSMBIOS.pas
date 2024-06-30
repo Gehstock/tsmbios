@@ -151,7 +151,13 @@ const
     'Not Supported', 'Not Supported', 'Not Supported', 'Not Supported', 'Not Supported', 'Not Supported', 'Not Supported', 'Not Supported', 'Not Supported',
     'Not Supported', 'Not Supported', 'Not Supported', 'Not Supported', 'Not Supported', 'Not Supported', 'Not Supported', 'Not Supported', 'Not Supported',
     'Not Supported', 'Not Supported', 'Inactive', 'End of Table', // 127
+{$IFDEF MSWINDOWS}
     'Not Supported', 'Not Supported', 'Not Supported', 'Not Supported', 'Not Supported', 'Not Supported', 'Not Supported', 'Not Supported', 'Not Supported',
+{$ENDIF}
+    //Apple Tables
+{$IFDEF MACOS}
+    'FIRMWARE_INFORMATION', 'Not Supported', 'MEMORY_SPD_DATA', 'PROCESSOR_TYPE', 'PROCESSOR_BUS_SPEED', 'PLATFORM_FEATURE', 'SMC_INFORMATION', 'Not Supported', 'Not Supported',
+{$ENDIF MACOS}
     'Not Supported', 'Not Supported', 'Not Supported', 'Not Supported', 'Not Supported', 'Not Supported', 'Not Supported', 'Not Supported', 'Not Supported',
     'Not Supported', 'Not Supported', 'Not Supported', 'Not Supported', 'Not Supported', 'Not Supported', 'Not Supported', 'Not Supported', 'Not Supported',
     'Not Supported', 'Not Supported', 'Not Supported', 'Not Supported', 'Not Supported', 'Not Supported', 'Not Supported', 'Not Supported', 'Not Supported',
