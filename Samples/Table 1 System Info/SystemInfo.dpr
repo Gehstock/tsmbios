@@ -5,7 +5,15 @@ program SystemInfo;
 uses
   Classes,
   SysUtils,
+
   uSMBIOS in '..\..\Common\uSMBIOS.pas';
+
+procedure Swap32(var X);
+  asm
+    mov ecx, [eax]
+    bswap ecx
+    mov [eax], ecx
+end;
 
 procedure GetSystemInfo;
   Var
@@ -26,7 +34,8 @@ procedure GetSystemInfo;
       WriteLn('Serial Number ' + LSystem.SerialNumberStr);
       {$IFNDEF LINUX}
       BinToHex(@LSystem.RAWSystemInformation.UUID, UUID, SizeOf(LSystem.RAWSystemInformation.UUID));
-      WriteLn('UUID          ' + UUID);
+      WriteLn('UUID          ' + UUID);  todo
+  //    WriteLn('UUID          ' + UUID(16..31));
       {$ENDIF}
       if SMBios.SmbiosVersion >= '2.4'
       then
