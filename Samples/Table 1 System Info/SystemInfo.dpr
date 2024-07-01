@@ -34,7 +34,7 @@ procedure GetSystemInfo;
       WriteLn('Serial Number ' + LSystem.SerialNumberStr);
       {$IFNDEF LINUX}
       BinToHex(@LSystem.RAWSystemInformation.UUID, UUID, SizeOf(LSystem.RAWSystemInformation.UUID));
-      WriteLn('UUID          ' + UUID);  todo
+      WriteLn('UUID          ' + UUID);//  todo
   //    WriteLn('UUID          ' + UUID(16..31));
       {$ENDIF}
       if SMBios.SmbiosVersion >= '2.4'
