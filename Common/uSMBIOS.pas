@@ -6231,7 +6231,23 @@ begin
         Result := 'Multi-Core Loongson™ 3C Processor 5xxx Series';
       625 :
         Result := 'Multi-Core Loongson™ 3D Processor 5xxx Series';
-      768 .. 65533 :
+      768 :
+        Result := 'Intel® Core™ 3';
+      769 :
+        Result := 'Intel® Core™ 5';
+      770 :
+        Result := 'Intel® Core™ 7';
+      771 :
+        Result := 'Intel® Core™ 9';
+      772 :
+        Result := 'Intel® Core™ Ultra 3';
+      773 :
+        Result := 'Intel® Core™ Ultra 5';
+      774 :
+        Result := 'Intel® Core™ Ultra 7';
+      775 :
+        Result := 'Intel® Core™ Ultra 9';
+      776 .. 65533 :
         Result := 'Available for assignment';
       65534 .. 65535 :
         Result := 'Reserved'
@@ -6428,6 +6444,20 @@ begin
       Result := 'Socket LGA4710';
     $50 :
       Result := 'Socket LGA7529';
+    $51 :
+      Result := 'Socket BGA1964';
+    $52 :
+      Result := 'Socket BGA1792';
+    $53 :
+      Result := 'Socket BGA2049';
+    $54 :
+      Result := 'Socket BGA2551';
+    $55 :
+      Result := 'Socket LGA1851';
+    $56 :
+      Result := 'Socket BGA2114';
+    $57 :
+      Result := 'Socket BGA2833';
     else
       Result := 'Unknown';
   end;
