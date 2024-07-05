@@ -104,8 +104,7 @@ type
     BaseBoardInformation,
     EnclosureInformation,
     ProcessorInformation,
-    MemoryControllerInformation,
-    // Obsolete starting with version 2.1
+    MemoryControllerInformation,// Obsolete starting with version 2.1
     MemoryModuleInformation, // Obsolete starting with version 2.1
     CacheInformation,
     PortConnectorInformation,
@@ -115,7 +114,9 @@ type
     SystemConfigurationOptions,
     BIOSLanguageInformation,
     GroupAssociations,
-    SystemEventLog, PhysicalMemoryArray, MemoryDevice,
+    SystemEventLog,
+    PhysicalMemoryArray,
+    MemoryDevice,
     MemoryErrorInformation, MemoryArrayMappedAddress, MemoryDeviceMappedAddress, BuiltinPointingDevice, PortableBattery, SystemReset, HardwareSecurity,
     SystemPowerControls,
     VoltageProbe, CoolingDevice, TemperatureProbe, ElectricalCurrentProbe, OutofBandRemoteAccess, BootIntegrityServicesEntryPoint,
@@ -4131,7 +4132,7 @@ uses ComObj,
 {$ENDIF}
 
 type
-  TSmBiosEntryPoint = packed record
+  TSmBiosEntryPoint = packed record// 32-bit
     AnchorString: array [0 .. 3] of Byte; // AnsiChar
     EntryPointChecksum: Byte;
     EntryPointLength: Byte;
@@ -4143,15 +4144,28 @@ type
     IntermediateAnchorString: array [0 .. 4] of Byte; // AnsiChar
     IntermediateChecksum: Byte;
     StructureTableLength: Word;
-    StructureTableAddress: DWORD;
+    StructureTableAddress: DWord;
     NumberSMBIOSStructures: Word;
     SMBIOSBCDRevision: Byte;
   end;
 
+    TSmBiosEntryPoint64 = packed record// 64-bit
+    AnchorString: array [0 .. 4] of Byte; // AnsiChar
+    EntryPointChecksum: Byte;
+    EntryPointLength: Byte;
+    SMBIOSMajorVersion: Byte;
+    SMBIOSMinorVersion: Byte;
+    SMBIOSDocrev: Byte;
+    EntryPointRevision: Byte;
+    Reserved: Byte;
+    MaximumStructureSize: DWord;
+    StructureTableAddress: UInt64;//QWORD;
+  end;
+
 const
-  SMBIOS_ANCHOR_STRING_VALUE = $5F4D535F;
-  // '_DMI_'
-  SMBIOS_INTERMEDIATE_ANCHOR_STRING_VALUE = [$5F, $44, $4D, $49, $5F];
+  SMBIOS_ANCHOR_STRING_VALUE = $5F4D535F;// '_SM_'
+  SMBIOS_INTERMEDIATE_ANCHOR_STRING_VALUE = [$5F, $44, $4D, $49, $5F];// '_DMI_'
+  SMBIOS_ANCHOR_STRING_VALUE64 = $5F334D535F;// '_SM3_'
 
 function GetBit(const AValue: DWORD; const Bit: Byte): Boolean;
 begin
@@ -4331,74 +4345,80 @@ begin
     FSysInfo := nil;
   end;
 
-  for i := 0 to Length(FOEMStringsInfo) - 1 do
-    FOEMStringsInfo[i].Free;
+  for i := 0 to Length(FBaseBoardInfo) - 1 do //Type 2
+    FBaseBoardInfo[i].Free;
 
-  for i := 0 to Length(FEnclosureInfo) - 1 do
+  for i := 0 to Length(FEnclosureInfo) - 1 do //Type 3
     FEnclosureInfo[i].Free;
 
-  for i := 0 to Length(FCacheInfo) - 1 do
-    FCacheInfo[i].Free;
-
-  for i := 0 to Length(FProcessorInfo) - 1 do
+  for i := 0 to Length(FProcessorInfo) - 1 do //Type 4
     FProcessorInfo[i].Free;
 
-  for i := 0 to Length(FPortConnectorInfo) - 1 do
+  for i := 0 to Length(FMemoryControllerInfo) - 1 do  //Type 5
+    FMemoryControllerInfo[i].Free;
+
+  for i := 0 to Length(FMemoryModuleInfo) - 1 do  //Type 6
+    FMemoryModuleInfo[i].Free;
+
+  for i := 0 to Length(FCacheInfo) - 1 do  //Type 7
+    FCacheInfo[i].Free;
+
+  for i := 0 to Length(FPortConnectorInfo) - 1 do //Type 8
     FPortConnectorInfo[i].Free;
 
-  for i := 0 to Length(FSystemSlotInfo) - 1 do
+  for i := 0 to Length(FSystemSlotInfo) - 1 do  //Type 9
     FSystemSlotInfo[i].Free;
+
+  for i := 0 to Length(FOEMStringsInfo) - 1 do //Type 11
+    FOEMStringsInfo[i].Free;
+
+  for i := 0 to Length(FBIOSLanguageInfo) - 1 do //Type 13
+    FBIOSLanguageInfo[i].Free;
+
+  for i := 0 to Length(FGroupAssociationsInformation) - 1 do //Type 14
+    FGroupAssociationsInformation[i].Free;
+
+  for i := 0 to Length(FPhysicalMemoryArrayInfo) - 1 do //Type 16
+    FPhysicalMemoryArrayInfo[i].Free;
+
+  for i := 0 to Length(FMemoryDeviceInfo) - 1 do //Type 17
+    FMemoryDeviceInfo[i].Free;
+
+  for i := 0 to Length(FMemoryArrayMappedAddressInformation) - 1 do //Type 19
+    FMemoryArrayMappedAddressInformation[i].Free;
+
+  for i := 0 to Length(FMemoryDeviceMappedAddressInformation) - 1 do //Type 20
+    FMemoryDeviceMappedAddressInformation[i].Free;
+
+  for i := 0 to Length(FBuiltInPointingDeviceInformation) - 1 do //Type 21
+    FBuiltInPointingDeviceInformation[i].Free;
+
+  for i := 0 to Length(FBatteryInformation) - 1 do  //Type 22
+    FBatteryInformation[i].Free;
+
+  for i := 0 to Length(FVoltageProbeInformation) - 1 do //Type 26
+    FVoltageProbeInformation[i].Free;
+
+  for i := 0 to Length(FCoolingDeviceInformation) - 1 do //Type 27
+    FCoolingDeviceInformation[i].Free;
+
+  for i := 0 to Length(FTemperatureProbeInformation) - 1 do //Type 28
+    FTemperatureProbeInformation[i].Free;
+
+  for i := 0 to Length(FElectricalCurrentProbeInformation) - 1 do //Type 29
+    FElectricalCurrentProbeInformation[i].Free;
 
   for i := 0 to Length(FSystemConfInfo) - 1 do
     FSystemConfInfo[i].Free;
 
-  for i := 0 to Length(FPhysicalMemoryArrayInfo) - 1 do
-    FPhysicalMemoryArrayInfo[i].Free;
-
   for i := 0 to Length(FOnBoardSystemInfo) - 1 do
     FOnBoardSystemInfo[i].Free;
 
-  for i := 0 to Length(FElectricalCurrentProbeInformation) - 1 do
-    FElectricalCurrentProbeInformation[i].Free;
 
-  for i := 0 to Length(FTemperatureProbeInformation) - 1 do
-    FTemperatureProbeInformation[i].Free;
 
-  for i := 0 to Length(FCoolingDeviceInformation) - 1 do
-    FCoolingDeviceInformation[i].Free;
 
-  for i := 0 to Length(FVoltageProbeInformation) - 1 do
-    FVoltageProbeInformation[i].Free;
 
-  for i := 0 to Length(FBuiltInPointingDeviceInformation) - 1 do
-    FBuiltInPointingDeviceInformation[i].Free;
 
-  for i := 0 to Length(FMemoryDeviceInfo) - 1 do
-    FMemoryDeviceInfo[i].Free;
-
-  for i := 0 to Length(FMemoryArrayMappedAddressInformation) - 1 do
-    FMemoryArrayMappedAddressInformation[i].Free;
-
-  for i := 0 to Length(FMemoryDeviceMappedAddressInformation) - 1 do
-    FMemoryDeviceMappedAddressInformation[i].Free;
-
-  for i := 0 to Length(FBatteryInformation) - 1 do
-    FBatteryInformation[i].Free;
-
-  for i := 0 to Length(FBIOSLanguageInfo) - 1 do
-    FBIOSLanguageInfo[i].Free;
-
-  for i := 0 to Length(FBaseBoardInfo) - 1 do
-    FBaseBoardInfo[i].Free;
-
-  for i := 0 to Length(FMemoryControllerInfo) - 1 do
-    FMemoryControllerInfo[i].Free;
-
-  for i := 0 to Length(FMemoryModuleInfo) - 1 do
-    FMemoryModuleInfo[i].Free;
-
-  for i := 0 to Length(FGroupAssociationsInformation) - 1 do
-    FGroupAssociationsInformation[i].Free;
 end;
 
 destructor TSMBios.Destroy;
