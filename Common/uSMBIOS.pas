@@ -2159,6 +2159,18 @@ type
       /// </summary>
       { $ENDREGION }
       function GetSlotLength: AnsiString;
+      { $REGION 'Documentation' }
+      /// <summary>
+      /// Get the values for the Slot Characteristics 1 field
+      /// </summary>
+      { $ENDREGION }
+      function GetSlotCharacteristics1: AnsiString;
+      { $REGION 'Documentation' }
+      /// <summary>
+      /// Get the values for the Slot Characteristics 2 field
+      /// </summary>
+      { $ENDREGION }
+      function GetSlotCharacteristics2: AnsiString;
   end;
 
   { $REGION 'Documentation' }
@@ -6856,6 +6868,50 @@ begin
       Result := '3.5" drive form factor';
     else
       Result := 'Unknown';
+  end;
+end;
+
+function TSystemSlotInformation.GetSlotCharacteristics1: AnsiString;
+begin
+  case RAWSystemSlotInformation^.SlotCharacteristics1 of
+    $01 :
+      Result := 'Provides 5.0 volts';
+    $02 :
+      Result := 'Provides 3.3 volts';
+    $03 :
+      Result := 'Slot’s opening is shared with another slot (for example, PCI/EISA shared slot)';
+    $04 :
+      Result := 'PC Card slot supports PC Card-16';
+    $05 :
+      Result := 'PC Card slot supports CardBus';
+    $06 :
+      Result := 'PC Card slot supports Zoom Video';
+    $07 :
+      Result := 'PC Card slot supports Modem Ring Resume';
+    else
+      Result := 'Characteristics unknown';
+  end;
+end;
+
+function TSystemSlotInformation.GetSlotCharacteristics2: AnsiString;
+begin
+  case RAWSystemSlotInformation^.SlotCharacteristics2 of
+    $01 :
+      Result := 'Slot supports hot-plug devices';
+    $02 :
+      Result := 'PCI slot supports SMBus signal';
+    $03 :
+      Result := 'PCIe slot supports bifurcation. This slot can partition its lanes into two or more PCIe devices plugged into the slot.';
+    $04 :
+      Result := 'Slot supports async/surprise removal, such as removal without prior notification to the operating system, device driver, or applications.';
+    $05 :
+      Result := 'Flexbus slot, CXL 1.0 capable';
+    $06 :
+      Result := 'Flexbus slot, CXL 2.0 capable';
+    $07 :
+      Result := 'Flexbus slot, CXL 3.0 capable';
+    else
+      Result := 'PCI slot supports Power Management Event (PME#) signal';
   end;
 end;
 
