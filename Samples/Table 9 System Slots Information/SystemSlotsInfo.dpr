@@ -26,6 +26,7 @@ procedure GetSystemSlotInfo;
   Var
     SMBios: TSMBios;
     LSlot: TSystemSlotInformation;
+    i : Integer;
   begin
     SMBios := TSMBios.Create;
     try
@@ -42,7 +43,9 @@ procedure GetSystemSlotInfo;
           WriteLn('Slot Length         ' + LSlot.GetSlotLength);
           WriteLn(Format('Slot ID             %.4x', [LSlot.RAWSystemSlotInformation.SlotID]));
           WriteLn('Characteristics 1   ' + ByteToBinStr(LSlot.RAWSystemSlotInformation.SlotCharacteristics1));
+              WriteLn('    ' + LSlot.GetSlotCharacteristics1);
           WriteLn('Characteristics 2   ' + ByteToBinStr(LSlot.RAWSystemSlotInformation.SlotCharacteristics2));
+              WriteLn('    ' + LSlot.GetSlotCharacteristics2);
           if SMBios.SmbiosVersion >= '2.6'
           then
           begin
